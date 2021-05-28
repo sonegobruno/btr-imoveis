@@ -14,8 +14,8 @@ export function Footer(): JSX.Element {
         h="216px"
       >
         <Box
-          ml="4"
-          mt="3"
+          ml={['4', '12']}
+          mt={['3', '4']}
         >
           <Text ml="6" fontWeight="bold" fontSize="2xl">Entre em contato</Text>
           <Stack spacing="2" mt="4">
@@ -40,7 +40,7 @@ export function Footer(): JSX.Element {
         w="100%"
         display="flex"
         align="center"
-        pl="3"
+        pl={['3', '5']}
       >
         <Text fontSize="sm" fontWeight="bold">Desenvolvido por: BTR Soluções</Text>
       </Flex>

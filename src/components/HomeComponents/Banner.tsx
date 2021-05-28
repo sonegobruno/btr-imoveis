@@ -7,7 +7,8 @@ export function Banner(): JSX.Element {
       alt="banner"
       w="100%"
       h={['160px', '272px']}
-      maxWidth="720px"
+      maxWidth="744px"
+      mx="auto"
     />
   );
 }
