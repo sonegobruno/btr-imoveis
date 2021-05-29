@@ -1,7 +1,7 @@
 import { Grid, GridItem } from '@chakra-ui/react';
-import { Immobile } from '../Immobile';
+import { Property } from '../Property';
 
-export function ListImmobile(): JSX.Element {
+export function ListProperty(): JSX.Element {
   return (
     <Grid
       maxWidth="880px"
@@ -12,13 +12,13 @@ export function ListImmobile(): JSX.Element {
       templateColumns={['1fr', '1fr 1fr', '1fr 1fr', '1fr 1fr 1fr']}
     >
       <GridItem display="flex" justifyContent="center">
-        <Immobile />
+        <Property />
       </GridItem>
       <GridItem display="flex" justifyContent="center">
-        <Immobile />
+        <Property />
       </GridItem>
       <GridItem display="flex" justifyContent="center">
-        <Immobile />
+        <Property />
       </GridItem>
     </Grid>
   );

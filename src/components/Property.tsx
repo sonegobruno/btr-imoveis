@@ -5,7 +5,7 @@ import { useRouter } from 'next/dist/client/router';
 
 import { RiArrowRightSLine, RiMapPin2Fill } from 'react-icons/ri';
 
-export function Immobile(): JSX.Element {
+export function Property(): JSX.Element {
   const router = useRouter();
 
   return (

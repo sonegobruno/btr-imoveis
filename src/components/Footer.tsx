@@ -7,7 +7,7 @@ import { MdMail } from 'react-icons/md';
 
 export function Footer(): JSX.Element {
   return (
-    <>
+    <Flex direction="column" position="absolute" w="100%" bottom="0">
       <Flex
         bg="gray.200"
         w="100%"
@@ -44,6 +44,6 @@ export function Footer(): JSX.Element {
       >
         <Text fontSize="sm" fontWeight="bold">Desenvolvido por: BTR Soluções</Text>
       </Flex>
-    </>
+    </Flex>
   );
 }

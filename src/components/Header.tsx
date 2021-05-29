@@ -1,6 +1,7 @@
 import {
   Button, Flex, Icon, Text, useBreakpointValue,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/dist/client/router';
 import { FaWhatsapp } from 'react-icons/fa';
 import { RiArrowLeftSLine } from 'react-icons/ri';
 
@@ -18,6 +19,8 @@ export function Header({
     lg: true,
   });
 
+  const router = useRouter();
+
   return (
     <Flex
       as="header"
@@ -25,7 +28,7 @@ export function Header({
       maxWidth={1480}
       h="55px"
       mx="auto"
-      px="6"
+      px="1"
       align="center"
       bg="red.500"
     >
@@ -33,17 +36,21 @@ export function Header({
         <Button
           as="a"
           ml="auto"
+          mr="2"
           display="flex"
           alignItems="center"
           justifyContent="center"
+          size="md"
+          p="2"
           bg="red.300"
           _hover={{
             bg: 'red.200',
           }}
         >
-          <Icon color="gray.200" fontSize="xl" as={FaWhatsapp} />
+          <Icon color="gray.200" fontSize="2xl" as={FaWhatsapp} />
           {isWideVersion
-          && <Text color="gray.200" fontSize="xl" ml="2">Entre em contato</Text>}
+            && <Text color="gray.200" fontSize="md" ml="2">Entre em contato</Text>
+          }
         </Button>
       )}
 
@@ -56,6 +63,7 @@ export function Header({
         _hover={{
           bg: 'red.300',
         }}
+        onClick={() => { router.back() }}
       >
         <Icon color="gray.200" fontSize="4xl" as={RiArrowLeftSLine} />
       </Button>
