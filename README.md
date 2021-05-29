@@ -14,11 +14,11 @@ ___
 
 ___
 
-<img src="https://readme-maker.herokuapp.com/uploads/974e362e7a97dbc9-Captura-de-tela-de-2021-05-29-14-19-15.png" width="1200">
-<img src="https://readme-maker.herokuapp.com/uploads/54d58c3f1b25e881-Captura-de-tela-de-2021-05-29-14-19-24.png" width="1200">
+<img src="https://readme-maker.herokuapp.com/uploads/974e362e7a97dbc9-Captura-de-tela-de-2021-05-29-14-19-15.png" width="375">
+<img src="https://readme-maker.herokuapp.com/uploads/54d58c3f1b25e881-Captura-de-tela-de-2021-05-29-14-19-24.png" width="375">
 <img src="https://readme-maker.herokuapp.com/uploads/2b42981a6aa48104-Captura-de-tela-de-2021-05-29-14-19-34.png" width="1200">
-<img src="https://readme-maker.herokuapp.com/uploads/81b325e6e2f895b8-Captura-de-tela-de-2021-05-29-14-19-55.png" width="1200">
-<img src="https://readme-maker.herokuapp.com/uploads/4677803b3e1a72a9-Captura-de-tela-de-2021-05-29-14-20-04.png" width="1200">
+<img src="https://readme-maker.herokuapp.com/uploads/81b325e6e2f895b8-Captura-de-tela-de-2021-05-29-14-19-55.png" width="375">
+<img src="https://readme-maker.herokuapp.com/uploads/4677803b3e1a72a9-Captura-de-tela-de-2021-05-29-14-20-04.png" width="375">
 
 ## :information_source: Sobre
 
@@ -27,9 +27,6 @@ Este projeto se trata de um catalogo de imóveis no qual, o usuario, poderá pro
 ## :interrobang: Motivo
 
 Este projeto tem como motivação colocar em prática o aprendizado adquirido nos útimos meses.
-
-## :seedling: Requisitos Mínimos
-
 
 
 ## :rocket: Tecnologias Utilizadas 
