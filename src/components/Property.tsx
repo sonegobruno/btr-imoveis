@@ -12,8 +12,7 @@ interface ImmobileProps {
 export function Property({ property }:ImmobileProps): JSX.Element {
   return (
     <Flex
-      border="1px"
-      borderColor="gray.400"
+      boxShadow="-1px 1px 5px -1px rgba(0,0,0,0.54)"
       borderRadius="8px"
       bg="gray.200"
       w="100%"
@@ -22,6 +21,10 @@ export function Property({ property }:ImmobileProps): JSX.Element {
       p="3"
       direction="column"
       position="relative"
+      transition="box-shadow .5s"
+      _hover={{
+        boxShadow: '-2px 2px 22px 1px rgba(0,0,0,0.51)',
+      }}
     >
       <Flex w="100%" h="173px" bgImage={`url(${process.env.NEXT_PUBLIC_API_URL}/imagens/${property.id_imovel}/${property.banner})`} bgSize="cover" borderRadius="8px" mx="auto" />
       <Box mt="4" pt="2" pb="12">

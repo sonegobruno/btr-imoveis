@@ -5,7 +5,7 @@ import { Banner } from '@/components/HomeComponents/Banner';
 import { FilterContainer } from '@/components/HomeComponents/FilterContainer';
 import { ListImmobile } from '@/components/HomeComponents/ListProperty';
 import { Sidebar } from '@/components/SidebarFilter';
-import { getAllProperties, useInitialProperty } from '@/services/hooks/properties/useSearchAll';
+import { getAllProperties, useInitialProperty } from '@/services/hooks/properties/useProperty';
 import { Flex } from '@chakra-ui/react';
 import { GetServerSideProps } from 'next';
 

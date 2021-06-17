@@ -7,11 +7,13 @@ export interface IProperty {
   valorFormatado: string;
   descricao: string;
   id_imovel: string;
+  quartos: string;
   link_maps: string;
   banner: string;
   cidade: string;
   uf: string;
   rua: string;
+  garagem: 'SIM', 'NAO';
   imagens: {
     destaque: 'SIM', 'NAO',
     file: string;
