@@ -1,7 +1,13 @@
+/* eslint-disable react/destructuring-assignment */
+import { IProperty } from '@/@types/property';
 import { Grid, GridItem } from '@chakra-ui/react';
 import { Property } from '../Property';
 
-export function ListProperty(): JSX.Element {
+interface ListImmobileProps {
+  properties: IProperty[]
+}
+
+export function ListImmobile({ properties }: ListImmobileProps): JSX.Element {
   return (
     <Grid
       maxWidth="880px"
@@ -11,15 +17,11 @@ export function ListProperty(): JSX.Element {
       gap={4}
       templateColumns={['1fr', '1fr 1fr', '1fr 1fr', '1fr 1fr 1fr']}
     >
-      <GridItem display="flex" justifyContent="center">
-        <Property />
-      </GridItem>
-      <GridItem display="flex" justifyContent="center">
-        <Property />
-      </GridItem>
-      <GridItem display="flex" justifyContent="center">
-        <Property />
-      </GridItem>
+      {properties.map((item) => (
+        <GridItem key={item.id_imovel}>
+          <Property property={item} />
+        </GridItem>
+      ))}
     </Grid>
   );
 }
