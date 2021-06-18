@@ -15,7 +15,9 @@ export interface IProperty {
   rua: string;
   garagem: 'SIM', 'NAO';
   imagens: {
-    destaque: 'SIM', 'NAO',
+    destaque: 'SIM'| 'NAO',
+    id_imovel_imagem: string;
     file: string;
   }[];
+  dimensao: string;
 }

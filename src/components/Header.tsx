@@ -1,9 +1,10 @@
 import {
-  Button, Flex, Icon, Text, useBreakpointValue,
+  Button, Flex, Icon, Text, useBreakpointValue, Link as ChakraLink
 } from '@chakra-ui/react';
 import { useRouter } from 'next/dist/client/router';
 import { FaWhatsapp } from 'react-icons/fa';
 import { RiArrowLeftSLine } from 'react-icons/ri';
+import Link from 'next/link';
 
 interface HeaderProps {
   showContact?: boolean;
@@ -55,18 +56,19 @@ export function Header({
       )}
 
       {showBackButton && (
-      <Button
-        mr="auto"
-        bg="transparent"
-        w="32px"
-        h="32px"
-        _hover={{
-          bg: 'red.300',
-        }}
-        onClick={() => { router.back() }}
-      >
-        <Icon color="gray.200" fontSize="4xl" as={RiArrowLeftSLine} />
-      </Button>
+        <Link href="/">
+          <ChakraLink
+            mr="auto"
+            bg="transparent"
+            w="32px"
+            h="32px"
+            _hover={{
+              bg: 'red.300',
+            }}
+          >
+            <Icon color="gray.200" fontSize="4xl" as={RiArrowLeftSLine} />
+          </ChakraLink>
+      </Link>
       )}
 
     </Flex>

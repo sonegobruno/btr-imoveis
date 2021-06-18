@@ -18,7 +18,7 @@ export function ListImmobile({ properties }: ListImmobileProps): JSX.Element {
       templateColumns={['1fr', '1fr 1fr', '1fr 1fr', '1fr 1fr 1fr']}
     >
       {properties.map((item) => (
-        <GridItem key={item.id_imovel}>
+        <GridItem key={item.id_imovel} display="flex" justifyContent="center">
           <Property property={item} />
         </GridItem>
       ))}

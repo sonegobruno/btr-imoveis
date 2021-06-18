@@ -1,9 +1,12 @@
 import React from 'react';
 import { SidebarFilterProvider } from './useSidebarFilter';
+import SimpleReactLightbox from 'simple-react-lightbox'
 
 const AppProvider: React.FC = React.memo(({ children }) => (
   <SidebarFilterProvider>
-    {children}
+    <SimpleReactLightbox>
+      {children}
+    </SimpleReactLightbox>
   </SidebarFilterProvider>
 ));
 

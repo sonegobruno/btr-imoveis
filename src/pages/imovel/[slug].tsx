@@ -22,7 +22,7 @@ export default function Imovel({ property }: ImovelProps): JSX.Element {
       && (
       <>
         <ImmobileInformation property={data} />
-        <Galery />
+        <Galery images={data.imagens} immobileId={data.id_imovel} />
         <Button
           mt="4"
           as="a"
