@@ -50,10 +50,10 @@ export const getStaticPaths = () => ({
   fallback: 'blocking',
 });
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { slug } = params;
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  const { slug } = ctx.params;
 
-  const response = await getPropertyById(String(slug));
+  const response = await getPropertyById(String(slug), ctx);
 
   return {
     props: {

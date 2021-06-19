@@ -36,12 +36,12 @@ export default function Home({ properties, numberTotalPage }: HomeProps): JSX.El
   );
 }
 
-export const getServerSideProps: GetServerSideProps<HomeProps> = async () => {
+export const getServerSideProps: GetServerSideProps<HomeProps> = async (ctx) => {
   const immobilePerPage = 35;
 
   const response = await getAllProperties({
     limit: immobilePerPage,
-  });
+  }, ctx);
 
   const numberTotalPage = Math.ceil(response.totalRows / immobilePerPage);
   return {

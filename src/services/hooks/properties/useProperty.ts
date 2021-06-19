@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { IProperty } from '@/@types/property';
-import { api } from '@/services/axios';
+import { setupAPIClient as api } from '@/services/axios';
 import formatCurrencyToBrazil from '@/utils/formatCurrencyToBrazil';
 import { UseQueryOptions, useQuery } from 'react-query';
 
@@ -13,8 +13,8 @@ interface IAllProperties {
   totalRows: number;
 }
 
-export async function getAllProperties({ limit }: getAllPropertiesProps): Promise<IAllProperties> {
-  const response = await api.post('/imovel/pesquisa', {
+export async function getAllProperties({ limit }: getAllPropertiesProps, ctx = undefined): Promise<IAllProperties> {
+  const response = await api(ctx).post('/imovel/pesquisa', {
     imovel: {
       status: 'ATIVO',
       id_modalidade_fk: '1',
@@ -38,8 +38,8 @@ export async function getAllProperties({ limit }: getAllPropertiesProps): Promis
   };
 }
 
-export async function getPropertyById(id: string): Promise<IProperty> {
-  const response = await api.get(`/imovel/${id}`);
+export async function getPropertyById(id: string, ctx = null): Promise<IProperty> {
+  const response = await api(ctx).get(`/imovel/${id}`);
   let immobile = response.data.result[0];
 
   immobile = {
