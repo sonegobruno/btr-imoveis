@@ -26,7 +26,7 @@ export function Sidebar() {
     }
 
     return (
-        <Box as="aside" w="48" mr="2">
+        <Box as="aside" w="48" mr="6">
             <SidebarNav />
         </Box>
     );

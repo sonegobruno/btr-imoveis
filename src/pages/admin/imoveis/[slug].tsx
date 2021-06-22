@@ -1,6 +1,5 @@
-import { Box, Button, Divider, Flex, Heading, HStack, SimpleGrid, VStack } from "@chakra-ui/react";
-import Link from "next/link";
-import React, { useState } from "react";
+import { Box, Button, Divider, Flex, Heading, HStack, SimpleGrid, Spinner, VStack } from "@chakra-ui/react";
+import React from "react";
 import { Input } from "@/components/Form/Input";
 import { Header } from "@/components/Admin/Header";
 import { Sidebar } from "@/components/Sidebar";
@@ -8,36 +7,35 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useMutation } from 'react-query'
-import { api } from "@/services/apiClient";
 import { useRouter } from "next/dist/client/router";
-import { queryClient } from "@/services/queryClient";
 import { useGetPropertyById } from "@/services/hooks/properties/useProperty";
 import { useEffect } from "react";
+import { withSSRAuth } from "@/utils/withSSRAuth";
+import { queryClient } from "@/services/queryClient";
+import { api } from "@/services/apiClient";
 
-type CreateUserFormData = {
+type UpdatePropertyFormData = {
+    bairro: string;
+    numero: string;
     titulo: string;
-    email: string;
-    password: string;
-    passwordConfirmation: string;
+    valorFormatado: string;
+    descricao: string;
+    id_imovel: string;
+    quartos: string;
+    link_maps: string;
+    cidade: string;
+    uf: string;
+    rua: string;
+    garagem: 'SIM', 'NAO';
+    dimensao: string;
   }
-  
-  const createUserFormSchema = yup.object().shape({
-    titulo: yup.string().required('Nome obrigatório'),
-    email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
-    password: yup.string().required('Senha obrigatória').min(6, 'Minimo 6 caracteres'),
-    password_confirmation: yup.string().oneOf([
-        null, yup.ref('password')
-    ],'As senhas precisam ser iguais')
-  })
   
 export default function CreateUser() {
     const router = useRouter();
     const idImovel = router.query.slug as string;
-    const {data, isLoading, isFetching, error} = useGetPropertyById(idImovel)
+    const { data, isLoading, isFetching } = useGetPropertyById(idImovel)
 
-    const { register, handleSubmit, formState, reset, setValue } = useForm({
-        resolver: yupResolver(createUserFormSchema),
-    });
+    const { register, handleSubmit, formState, reset } = useForm({});
 
     useEffect(() => {
         reset(data);
@@ -45,26 +43,23 @@ export default function CreateUser() {
 
     const { errors } = formState;
 
-    const createUser = useMutation(async (user: CreateUserFormData) => {
-        console.log(user)
-        // const response = await api.post('users', {
-        //     user: {
-        //         ...user,
-        //         created_at: new Date(),
-        //     }
-        // })
+    const UpdateProperty = useMutation(async (property: UpdatePropertyFormData) => {
+        const response = await api.put(`/imovel/${idImovel}`, {
+            imovel: property
+        })
 
-        // return response.data.user;
+        return response.data.imovel;
     }, {
         onSuccess: () => {
-            // queryClient.invalidateQueries('users')
+            queryClient.invalidateQueries(['properties', idImovel])
         }
     })
     
 
-    const handleCreateUser: SubmitHandler<CreateUserFormData> = async(values) =>{
-        await createUser.mutateAsync(values);
-        router.push('/users')
+    const handleUpdateProperty: SubmitHandler<UpdatePropertyFormData> = async(values) =>{
+        console.log(values)
+        await UpdateProperty.mutateAsync(values);
+        router.push('/admin/imoveis');
     } 
     
     return (
@@ -75,13 +70,16 @@ export default function CreateUser() {
 
                 <Box 
                     as="form" 
-                    onSubmit={handleSubmit(handleCreateUser)}
+                    onSubmit={handleSubmit(handleUpdateProperty)}
                     flex="1" 
                     borderRadius={8} 
                     boxShadow="1px 3px 23px -3px rgba(0,0,0,0.63)"
                     p={["6","8"]}
                 >
-                    <Heading size="lg">Atualizar imóvel</Heading>
+                    <Heading size="lg">
+                        Atualizar imóvel
+                        {isLoading && <Spinner size="sm" color="gray.500" ml="4" />}
+                    </Heading>
 
                     <Divider my="6" borderColor="gray.700"/>
 
@@ -90,7 +88,7 @@ export default function CreateUser() {
                             <Input name="titulo" {...register('titulo')} error={errors.titulo} label="Titulo"/>
                         </SimpleGrid>
                         <SimpleGrid minChildWidth="240px" spacing={["6","8"]} w="100%">
-                            <Input name="valor" {...register('valor')} error={errors.valor} label="Valor"/>
+                            <Input name="valorFormatado" {...register('valorFormatado')} error={errors.valorFormatado} label="Valor"/>
                             <Input name="quartos" {...register('quartos')} error={errors.quartos} label="Quartos"/>
                             <Input name="dimensao" {...register('dimensao')} error={errors.dimensao} label="Dimensão"/>
                         </SimpleGrid>
@@ -121,3 +119,12 @@ export default function CreateUser() {
         </Box>
     )
 }
+
+export const getServerSideProps = withSSRAuth(async (ctx) => {
+
+    return {
+        props: {
+
+        },
+    }
+})

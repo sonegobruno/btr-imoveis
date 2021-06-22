@@ -7,6 +7,7 @@ import { useGetAllProperty } from "@/services/hooks/properties/useProperty";
 import { Sidebar } from "@/components/Sidebar";
 import { Pagination } from "@/components/Pagination";
 import { FaTrash } from "react-icons/fa";
+import { withSSRAuth } from "@/utils/withSSRAuth";
 
 export default function UserList() {
     const propertiesPerPage = 10;
@@ -96,3 +97,12 @@ export default function UserList() {
         </Box>
     )
 }
+
+export const getServerSideProps = withSSRAuth(async (ctx) => {
+
+    return {
+        props: {
+
+        },
+    }
+})
