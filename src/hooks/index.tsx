@@ -5,16 +5,19 @@ import { QueryClientProvider } from 'react-query';
 import { SidebarFilterProvider } from './useSidebarFilter';
 import { queryClient } from '@/services/queryClient';
 import { AuthProvider } from './useAuth';
+import { SidebarDashboardProvider } from './useSidebarDashboard';
 
 const AppProvider: React.FC = React.memo(({ children }) => (
   <SidebarFilterProvider>
-    <SimpleReactLightbox>
-      <AuthProvider>
-        <QueryClientProvider client={queryClient}>
-          {children}
-        </QueryClientProvider>
-      </AuthProvider>
-    </SimpleReactLightbox>
+    <SidebarDashboardProvider>
+      <SimpleReactLightbox>
+        <AuthProvider>
+          <QueryClientProvider client={queryClient}>
+            {children}
+          </QueryClientProvider>
+        </AuthProvider>
+      </SimpleReactLightbox>
+    </SidebarDashboardProvider>
   </SidebarFilterProvider>
 ));
 

@@ -1,62 +1,41 @@
-import { withSSRAuth } from "@/utils/withSSRAuth";
-import { Box, Button, Checkbox, Flex, Heading, Icon, Table, Text, Tbody, Td, Th, Thead, Tr, useBreakpointValue, Spinner, Link } from "@chakra-ui/react";
+import { Box, Button, Checkbox, Flex, Heading, Icon, Table, Text, Tbody, Td, Stack, Tr, useBreakpointValue, Spinner, Link } from "@chakra-ui/react";
 import NextLink from "next/link";
 import React, { useState } from "react";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
 import { Header } from "@/components/Admin/Header";
-import { getAllProperties, useInitialProperty } from "@/services/hooks/properties/useProperty";
-import { IProperty } from "@/@types/property";
-// import { Pagination } from "../../components/Pagination";
-// import { Sidebar } from "../../components/Sidebar";
-// import { api } from "../../services/api";
-// import { getUsers, useUsers } from "../../services/hooks/useUsers";
-// import { queryClient } from '../../services/queryCliente';
+import { useGetAllProperty } from "@/services/hooks/properties/useProperty";
+import { Sidebar } from "@/components/Sidebar";
+import { Pagination } from "@/components/Pagination";
+import { FaTrash } from "react-icons/fa";
 
-interface IAllProperties {
-    properties: IProperty[];
-    totalRows: number;
-  }
-  
-  interface UserListProps {
-    properties: IAllProperties;
-    numberTotalPage: number;
-  }
+export default function UserList() {
+    const propertiesPerPage = 10;
+    const [page, setPage] = useState(0);
 
-export default function UserList({numberTotalPage, properties}: UserListProps) {
-    const [page, setPage] = useState(1);
-    const { data, isLoading, isFetching, error } = useInitialProperty({ limit: 35 }, {
-        initialData: properties
-    });
+    const {data, isLoading, isFetching, error} = useGetAllProperty({
+        limit: propertiesPerPage,
+        offset: propertiesPerPage * (page),
+    })
 
     const isWideVersion = useBreakpointValue({
         base: false,
         lg: true,
     })
 
-    // async function handlePrefetchUser(userId: number) {
-    //     await queryClient.prefetchQuery(['user', userId], async () => {
-    //         const response = await api.get(`users/${userId}`)
-
-    //         return response.data;
-    //     }), {
-    //         staleTime: 1000 * 60 * 10 // 10 min
-    //     }
-    // }
-
     return (
         <Box>
             <Header />
-            <Flex w="100%" my="6" maxWidth={1480} mx="auto" px="6">
-                {/* <Sidebar /> */}
+            <Flex w="100%" my="6" maxWidth={1480} mx="auto" pl={["1", "0"]} pr={["1", "6"]}>
+                <Sidebar />
 
-                <Box flex="1" borderRadius={8} bg="gray.800" p="8">
+                <Box flex="1" borderRadius={8} boxShadow="1px 3px 23px -3px rgba(0,0,0,0.63)" p="8">
                     <Flex mb="8" justify="space-between" align="center"> 
                         <Heading size="lg" fontWeight="normal">
                             Imóveis
-                            {/* {!isLoading && isFetching && <Spinner size="sm" color="gray.500" ml="4" />} */}
+                            {!isLoading && isFetching && <Spinner size="sm" color="gray.500" ml="4" />}
                         </Heading>
                         <NextLink href="/users/create" passHref>
-                            <Button as="a" size="sm" fontSize="sm" colorScheme="pink" leftIcon={<Icon fontSize="20" as={RiAddLine}/>} >
+                            <Button as="a" size="sm" fontSize="sm" colorScheme="red" leftIcon={<Icon fontSize="20" as={RiAddLine}/>} >
                                 Criar novo
                             </Button>
                         </NextLink>
@@ -72,40 +51,44 @@ export default function UserList({numberTotalPage, properties}: UserListProps) {
                         </Flex>
                     ) : (
                         <>
-                            <Table colorScheme="whiteAlpha">
-                                <Thead>
-                                    <Tr>
-                                        <Th>Imóveis</Th>
-                                    </Tr>
-                                </Thead>
+                            <Table colorScheme="gray">
                                 <Tbody>
                                     {data.properties.map(property => (
                                         <Tr key={property.id_imovel}>
+                                            {isWideVersion &&
+                                                <Td>
+                                                    <Text fontWeight="bold">#{property.id_imovel}</Text>
+                                                </Td>
+                                            }
                                             <Td>
                                                 <Box>
-                                                    <Link color="purple.400">
-                                                        <Text fontWeight="bold">{property.titulo}</Text>
-                                                    </Link>
-                                                    <Text fontSize="sm" color="gray.300">{property.valorFormatado}</Text>
+                                                    <Text color="gray.800" fontWeight="bold">{property.titulo}</Text>
+                                                    <Text fontSize="sm" fontWeight="bold" color="gray.600">{property.valorFormatado}</Text>
                                                 </Box>
                                             </Td>
                                             <Td>
-                                            {isWideVersion &&
-                                                <Button as="a" size="sm" fontSize="sm" colorScheme="purple" leftIcon={<Icon fontSize="16" as={RiPencilLine}/>} >
-                                                    Editar
-                                                </Button>
-                                            }
+                                                <Stack ml="auto" maxW="104px" spacing="1">
+                                                    <NextLink href={`/admin/imoveis/${property.id_imovel}`}>
+                                                        <Button as="a" size="sm" fontSize="sm" colorScheme="red" leftIcon={<Icon fontSize="16" as={RiPencilLine}/>} >
+                                                            Editar
+                                                        </Button>
+                                                    </NextLink>
+                                                    <Button as="a" size="sm" fontSize="sm" colorScheme="red" leftIcon={<Icon fontSize="16" as={FaTrash}/>} >
+                                                        Excluir
+                                                    </Button>
+                                                </Stack>
                                             </Td>
                                         </Tr>
                                     ))}
                                     
                                 </Tbody>
                             </Table>
-                            {/* <Pagination
-                                totalCountOfRegisters={data.totalCount}
+                            <Pagination
+                                totalCountOfRegisters={data.totalRows}
                                 currentPage={page}
                                 onPageChange={setPage}
-                            /> */}
+                                registesPerPage={propertiesPerPage}
+                            />
                         </>)
                     }  
                 </Box>
@@ -113,20 +96,3 @@ export default function UserList({numberTotalPage, properties}: UserListProps) {
         </Box>
     )
 }
-
-export const getServerSideProps = withSSRAuth<UserListProps>(async (ctx) => {
-    const immobilePerPage = 35;
-
-    const response = await getAllProperties({
-        limit: immobilePerPage,
-    }, ctx);
-
-    const numberTotalPage = Math.ceil(response.totalRows / immobilePerPage);
-
-    return {
-        props: {
-            properties: response,
-            numberTotalPage,
-        }
-    }
-})

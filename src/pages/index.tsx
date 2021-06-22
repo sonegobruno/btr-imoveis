@@ -5,7 +5,7 @@ import { Banner } from '@/components/HomeComponents/Banner';
 import { FilterContainer } from '@/components/HomeComponents/FilterContainer';
 import { ListImmobile } from '@/components/HomeComponents/ListProperty';
 import { Sidebar } from '@/components/SidebarFilter';
-import { getAllProperties, useInitialProperty } from '@/services/hooks/properties/useProperty';
+import { getAllProperties, useGetAllProperty } from '@/services/hooks/properties/useProperty';
 import { Flex } from '@chakra-ui/react';
 import { GetServerSideProps } from 'next';
 
@@ -20,7 +20,7 @@ interface HomeProps {
 }
 
 export default function Home({ properties, numberTotalPage }: HomeProps): JSX.Element {
-  const { data, isSuccess } = useInitialProperty({
+  const { data, isSuccess } = useGetAllProperty({
     limit: 35,
   }, { initialData: properties });
 
