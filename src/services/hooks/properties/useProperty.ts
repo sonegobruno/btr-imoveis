@@ -56,7 +56,6 @@ export async function getPropertyById(id: string, ctx = null): Promise<IProperty
 
 // eslint-disable-next-line max-len
 export function useGetAllProperty(filter: getAllPropertiesProps, options: UseQueryOptions<unknown, unknown, IAllProperties> = {} as any) {
-  console.log(filter)
   return useQuery(['properties', filter], () => getAllProperties(filter), {
     ...options,
     staleTime: 5 * 1000,

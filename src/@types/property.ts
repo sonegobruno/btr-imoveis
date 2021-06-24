@@ -11,6 +11,7 @@ export interface IProperty {
   link_maps: string;
   banner: string;
   cidade: string;
+  id_cidade_fk: string;
   uf: string;
   rua: string;
   garagem: 'SIM', 'NAO';

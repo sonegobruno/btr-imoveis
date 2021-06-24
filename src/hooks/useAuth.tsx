@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
 import { useRouter } from 'next/router';
-import { setCookie, parseCookies } from 'nookies';
+import { setCookie, parseCookies, destroyCookie } from 'nookies';
 
 import { api } from '@/services/apiClient';
 import { useEffect } from 'react';
@@ -46,8 +46,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
     },[])
 
     function signOut() {
-        destroyCookie(undefined, '@btr-imoveis:token');
-        destroyCookie(undefined, '@btr-imoveis:user');
+        destroyCookie(undefined, '@btr-imoveis:token', {
+            path: '/'
+        });
+        destroyCookie(undefined, '@btr-imoveis:user', {
+            path: '/'
+        });
         router.push('/admin/login');
     }
 
@@ -66,7 +70,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
             setCookie(undefined, '@btr-imoveis:token', data.token, {
                 maxAge: 60 * 60 * 24, // one day  
-                path: '/'
+                path: '/',
             });
 
             setCookie(undefined, '@btr-imoveis:user', JSON.stringify(userLogged), {
@@ -97,8 +101,4 @@ export function useAuth(): AuthContextData {
     }
   
     return context;
-  }
-
-function destroyCookie(undefined: undefined, arg1: string) {
-    throw new Error('Function not implemented.');
 }

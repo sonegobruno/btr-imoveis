@@ -15,11 +15,16 @@ export function setupAPIClient(ctx = undefined) {
   
   api.interceptors.response.use(response => {
     return response;
-  }, (error: AxiosError) => {
+  }, async (error: AxiosError) => {
       if(error.response.status === 401) {
         if(process.browser) {
-          destroyCookie(undefined, '@btr-imoveis:token');
-          destroyCookie(undefined, '@btr-imoveis:user');
+          
+          destroyCookie(undefined, '@btr-imoveis:token', {
+            path: ''
+          });
+          destroyCookie(undefined, '@btr-imoveis:user', {
+            path: ''
+          });
           Router.push('/admin/login');
         } else {
           Promise.reject(new AuthTokenError())

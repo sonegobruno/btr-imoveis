@@ -1,6 +1,5 @@
 import 'react-toastify/dist/ReactToastify.css';
 import 'nprogress/nprogress.css';
-
 import { AppProps } from 'next/app';
 import { ChakraProvider } from '@chakra-ui/react';
 import { ToastContainer } from 'react-toastify';
