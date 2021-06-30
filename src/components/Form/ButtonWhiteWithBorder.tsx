@@ -7,22 +7,22 @@ interface Props extends ButtonProps {
     icon?: IconType;
 }
 
-export function ButtonWhiteWithBorder({children, icon, ...rest}: Props) {
-    return (
-        <Button 
-            size="sm" 
-            fontSize="sm" 
-            cursor="pointer" 
-            colorScheme="whiteAlpha" 
-            border="1px solid" 
-            color="red.400" 
-            leftIcon={!!icon ? <Icon fontSize="16" as={icon}/> : null}
-            _hover={{
-                bg:"red.50"
-            }}
-            {...rest}
-        >
-            {children}
-        </Button>
-    )
+export function ButtonWhiteWithBorder({ children, icon, ...rest }: Props): JSX.Element {
+  return (
+    <Button
+      size="sm"
+      fontSize="sm"
+      cursor="pointer"
+      colorScheme="whiteAlpha"
+      border="1px solid"
+      color="red.400"
+      leftIcon={icon ? <Icon fontSize="16" as={icon} /> : null}
+      _hover={{
+        bg: 'red.50',
+      }}
+      {...rest}
+    >
+      {children}
+    </Button>
+  );
 }

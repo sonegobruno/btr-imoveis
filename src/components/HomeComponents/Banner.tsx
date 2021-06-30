@@ -1,4 +1,4 @@
-import { Image, Flex } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 
 export function Banner(): JSX.Element {
   return (
@@ -8,11 +8,11 @@ export function Banner(): JSX.Element {
       gRepeat="no-repeat"
       alt="banner"
       w="100%"
-      h={["160px", "273px"]}
+      h={['160px', '273px']}
       maxWidth="880px"
       mx="auto"
-      mt={["0", "0", "4"]}
-      borderRadius={["0", "0", "8px 8px 0 0"]}
+      mt={['0', '0', '4']}
+      borderRadius={['0', '0', '8px 8px 0 0']}
     />
   );
 }

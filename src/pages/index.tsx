@@ -16,10 +16,10 @@ interface IAllProperties {
 
 interface HomeProps {
   properties: IAllProperties;
-  numberTotalPage: number;
+  // numberTotalPage: number;
 }
 
-export default function Home({ properties, numberTotalPage }: HomeProps): JSX.Element {
+export default function Home({ properties }: HomeProps): JSX.Element {
   const { data, isSuccess } = useGetAllProperty({
     limit: 35,
   }, { initialData: properties });

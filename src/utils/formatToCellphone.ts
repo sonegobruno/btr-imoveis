@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 export function formatToCellphone(celular: string): string {
   celular = celular.replace(/[^\d]/g, '');
 

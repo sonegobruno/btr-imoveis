@@ -1,0 +1,16 @@
+.currency {
+  width: 100%;
+  height: 48px;
+  background: #DADBD1;
+  padding: 0 16px;
+  border-radius: 5px;
+  outline: 0;
+}
+
+.currency:hover {
+  border: 2px solid #F56565;
+}
+
+.currency:focus {
+  border: 2px solid #F56565;
+}

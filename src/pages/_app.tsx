@@ -1,4 +1,5 @@
 import 'react-toastify/dist/ReactToastify.css';
+import '../styles/global.css';
 import 'nprogress/nprogress.css';
 import { AppProps } from 'next/app';
 import { ChakraProvider } from '@chakra-ui/react';
@@ -25,8 +26,8 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <ChakraProvider theme={theme}>
       <AppProvider>
-          <Component {...pageProps} />
-          <ToastContainer autoClose={3000} />
+        <Component {...pageProps} />
+        <ToastContainer autoClose={3000} />
       </AppProvider>
     </ChakraProvider>
   );

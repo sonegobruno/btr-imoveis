@@ -9,7 +9,7 @@ export function SearchBox(): JSX.Element {
     <Flex
       as="label"
       flex="1"
-      py={["2"]}
+      py={['2']}
       px="6"
       maxW="600px"
       alignSelf="center"
@@ -25,13 +25,13 @@ export function SearchBox(): JSX.Element {
         color="gray.700"
         variant="unstyled"
         placeholder="Pesquisar"
-        fontSize={["sm","md"]}
+        fontSize={['sm', 'md']}
         _placeholder={{
           color: 'gray.600',
         }}
         ref={searchInputRef}
       />
-      <Icon as={RiSearchLine} color="gray.600" fontSize={["18","20"]} />
+      <Icon as={RiSearchLine} color="gray.600" fontSize={['18', '20']} />
     </Flex>
   );
 }

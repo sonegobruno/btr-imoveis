@@ -1,5 +1,5 @@
-export default function Create() {
-    return (
-        <h1>Teste</h1>
-    )
+export default function Create(): JSX.Element {
+  return (
+    <h1>Teste</h1>
+  );
 }

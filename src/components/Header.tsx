@@ -1,5 +1,5 @@
 import {
-  Button, Flex, Icon, Text, useBreakpointValue, Link as ChakraLink
+  Button, Flex, Icon, Text, useBreakpointValue, Link as ChakraLink,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/dist/client/router';
 import { FaWhatsapp } from 'react-icons/fa';
@@ -50,8 +50,7 @@ export function Header({
         >
           <Icon color="gray.200" fontSize="2xl" as={FaWhatsapp} />
           {isWideVersion
-            && <Text color="gray.200" fontSize="md" ml="2">Entre em contato</Text>
-          }
+            && <Text color="gray.200" fontSize="md" ml="2">Entre em contato</Text>}
         </Button>
       )}
 
@@ -68,7 +67,7 @@ export function Header({
           >
             <Icon color="gray.200" fontSize="4xl" as={RiArrowLeftSLine} />
           </ChakraLink>
-      </Link>
+        </Link>
       )}
 
     </Flex>

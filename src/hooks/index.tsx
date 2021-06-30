@@ -1,9 +1,9 @@
 import React from 'react';
-import SimpleReactLightbox from 'simple-react-lightbox'
+import SimpleReactLightbox from 'simple-react-lightbox';
 import { QueryClientProvider } from 'react-query';
 
-import { SidebarFilterProvider } from './useSidebarFilter';
 import { queryClient } from '@/services/queryClient';
+import { SidebarFilterProvider } from './useSidebarFilter';
 import { AuthProvider } from './useAuth';
 import { SidebarDashboardProvider } from './useSidebarDashboard';
 

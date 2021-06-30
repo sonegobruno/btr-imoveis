@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 export interface IProperty {
   bairro: string;
   numero: string;

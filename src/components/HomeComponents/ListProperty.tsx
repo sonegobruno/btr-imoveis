@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import { IProperty } from '@/@types/property';
 import { Grid, GridItem } from '@chakra-ui/react';
 import { Property } from '../Property';

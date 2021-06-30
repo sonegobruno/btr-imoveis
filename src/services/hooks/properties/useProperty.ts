@@ -14,7 +14,10 @@ interface IAllProperties {
   totalRows: number;
 }
 
-export async function getAllProperties(filter: getAllPropertiesProps, ctx = undefined): Promise<IAllProperties> {
+export async function getAllProperties(
+  filter: getAllPropertiesProps,
+  ctx = undefined,
+): Promise<IAllProperties> {
   const response = await api(ctx).post('/imovel/pesquisa', {
     imovel: {
       status: 'ATIVO',
@@ -54,16 +57,20 @@ export async function getPropertyById(id: string, ctx = null): Promise<IProperty
   return immobile;
 }
 
-// eslint-disable-next-line max-len
-export function useGetAllProperty(filter: getAllPropertiesProps, options: UseQueryOptions<unknown, unknown, IAllProperties> = {} as any) {
+export function useGetAllProperty(
+  filter: getAllPropertiesProps,
+  options: UseQueryOptions<unknown, unknown, IAllProperties> = {} as unknown,
+) {
   return useQuery(['properties', filter], () => getAllProperties(filter), {
     ...options,
     staleTime: 5 * 1000,
   });
 }
 
-// eslint-disable-next-line max-len
-export function useGetPropertyById(id: string, options: UseQueryOptions<unknown, unknown, IProperty> = {} as any) {
+export function useGetPropertyById(
+  id: string,
+  options: UseQueryOptions<unknown, unknown, IProperty> = {} as unknown,
+) {
   return useQuery(['properties', id], () => getPropertyById(id), {
     ...options,
     staleTime: 5 * 1000,

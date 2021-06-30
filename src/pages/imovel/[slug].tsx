@@ -45,6 +45,7 @@ export default function Imovel({ property }: ImovelProps): JSX.Element {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const getStaticPaths = () => ({
   paths: [],
   fallback: 'blocking',

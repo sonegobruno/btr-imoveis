@@ -1,5 +1,5 @@
 import {
-  Grid, GridItem, Flex, Heading, Link
+  Grid, GridItem, Heading, Link,
 } from '@chakra-ui/react';
 import { SRLWrapper } from 'simple-react-lightbox';
 import Image from 'next/image';
@@ -58,18 +58,18 @@ export function Galery({ images, immobileId }: GaleryProps): JSX.Element {
         >
           {images.map((imageMapped) => (
             <GridItem key={imageMapped.id_imovel_imagem} display="flex" justifyContent="center">
-                <Link href={`${process.env.NEXT_PUBLIC_API_URL}/imagens/${immobileId}/${imageMapped.file}`}>
-                  <Image
-                    src={`${process.env.NEXT_PUBLIC_API_URL}/imagens/${immobileId}/${imageMapped.file}`}
-                    alt="Galeria"
-                    width={280}
-                    height={205}
-                  />
-                </Link>
+              <Link href={`${process.env.NEXT_PUBLIC_API_URL}/imagens/${immobileId}/${imageMapped.file}`}>
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_API_URL}/imagens/${immobileId}/${imageMapped.file}`}
+                  alt="Galeria"
+                  width={280}
+                  height={205}
+                />
+              </Link>
             </GridItem>
-            ))}
-          </Grid>
-        </SRLWrapper>
+          ))}
+        </Grid>
+      </SRLWrapper>
     </>
   );
 }
